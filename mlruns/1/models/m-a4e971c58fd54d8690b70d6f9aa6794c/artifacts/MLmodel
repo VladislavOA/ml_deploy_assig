@@ -1,0 +1,23 @@
+artifact_path: "file:///C:/Users/Vlad/OneDrive/\u0420\u0430\u0431\u043E\u0447\u0438\
+  \u0439 \u0441\u0442\u043E\u043B/pet/ml_deploy_assig/mlruns/1/models/m-a4e971c58fd54d8690b70d6f9aa6794c/artifacts"
+flavors:
+  catboost:
+    catboost_version: 1.2.10
+    code: null
+    data: model.cb
+    model_type: CatBoostClassifier
+    save_format: cbm
+  python_function:
+    data: model.cb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.catboost
+    python_version: 3.12.4
+mlflow_version: 3.16.0
+model_id: m-a4e971c58fd54d8690b70d6f9aa6794c
+model_size_bytes: 19772
+model_uuid: m-a4e971c58fd54d8690b70d6f9aa6794c
+prompts: null
+run_id: b87d36abcf5b42b6b531152e4daad00e
+utc_time_created: '2026-09-11 14:46:58.826824'

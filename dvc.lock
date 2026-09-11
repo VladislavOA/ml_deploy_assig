@@ -1,0 +1,56 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python code/datasets/preprocessing.py --input data/raw/data_raw.csv 
+      --output-dir data/processed
+    deps:
+    - path: code/datasets/preprocessing.py
+      hash: md5
+      md5: 54bf52c6276aac40b968881110a5916d
+      size: 4378
+    - path: data/raw/data_raw.csv
+      hash: md5
+      md5: f8a8fe3a5b61c1735ca76c66fbfbb62e
+      size: 977503
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 6d6851b7e3be9d94837cc17032db3c5f
+      size: 178939
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 3ac2a9434e6026a757e3f688137af3e6
+      size: 713870
+  train:
+    cmd: python code/models/training.py --train-data data/processed/train.csv 
+      --test-data data/processed/test.csv --output-model-dir models
+    deps:
+    - path: code/models/feature_engineering.py
+      hash: md5
+      md5: 8d17c5f57170a8f98f9d7cd1fcc79fc9
+      size: 1411
+    - path: code/models/training.py
+      hash: md5
+      md5: d3e0c1852dbfcc4453431a8e5d35a3fa
+      size: 8234
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 6d6851b7e3be9d94837cc17032db3c5f
+      size: 178939
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 3ac2a9434e6026a757e3f688137af3e6
+      size: 713870
+    outs:
+    - path: models/catboost_model.cbm
+      hash: md5
+      md5: 928c729df6342f1c5520d4e66ee0ec20
+      size: 19772
+    - path: models/catboost_model.pkl
+      hash: md5
+      md5: 04d16ed0bd01cd280e79c75ce8d51dea
+      size: 33223
+    - path: models/model_features.json
+      hash: md5
+      md5: eddcf47d60b242fa95c86a31777c42fc
+      size: 1345

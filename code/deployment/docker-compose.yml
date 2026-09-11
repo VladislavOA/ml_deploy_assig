@@ -1,0 +1,28 @@
+﻿services:
+  api:
+    build:
+      context: ../..
+      dockerfile: code/deployment/api/Dockerfile
+    container_name: churn_api
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=/app/models/catboost_model.cbm
+      - PIPELINE_INTERVAL_SECONDS=300
+    volumes:
+      - ../../data:/app/data
+      - ../../models:/app/models
+    restart: unless-stopped
+
+  app:
+    build:
+      context: ../..
+      dockerfile: code/deployment/app/Dockerfile
+    container_name: churn_app
+    ports:
+      - "8501:8501"
+    environment:
+      - FASTAPI_URL=http://api:8000/predict
+    depends_on:
+      - api
+    restart: unless-stopped
