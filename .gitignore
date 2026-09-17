@@ -219,4 +219,5 @@ __marimo__/
 
 catboost_info/
 mlflow.db
+mlflow.db.*
 mlruns/
